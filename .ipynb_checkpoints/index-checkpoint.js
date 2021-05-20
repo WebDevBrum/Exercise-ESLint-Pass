@@ -10,14 +10,14 @@ const rl = readline_1.createInterface({
   // readable stream
   input: process.stdin,
   // writeable stream
-  output: process.stdout,
+  output: process.stdout
 });
 // Create questions for STDIN Input from console.
 const menuQ = () => {
   return new Promise((resolve, reject) => {
     try {
       // (readable, writeable from readline interface)
-      rl.question('Your choice: ', (answer) => {
+      rl.question('Your choice: ', answer => {
         resolve(answer);
       });
     } catch (error) {
@@ -27,40 +27,24 @@ const menuQ = () => {
   });
 };
 let milkQ = () => {
-  return new Promise((resolve, reject) => {
-    rl.question('How many cups of milk to add? ', (answer) => {
+  return new Promise((resolve) => {
+    rl.question('How many cups of milk to add? ', answer => {
       resolve(answer);
     });
   });
 };
 
-// User questions
-const userOptions = async (mochaObject) => {
-  let milkPicked = await milkQ();
-  let milkChoice = parseInt(milkPicked);
-  var espPicked = await espressoQ();
-  let espChoice = parseInt(espPicked);
-  // If peppermint mocha
-  if (mochaObject instanceof PeppermintMocha) {
-    let pepPicked = await peppermintQ();
-    let pepChoice = parseInt(pepPicked);
-    mochaObject.peppermintSyrup = pepChoice;
-  }
-  mochaObject.milk = milkChoice;
-  mochaObject.shot = espChoice;
-  mochaObject.prepare();
-};
 
 const espressoQ = () => {
-  return new Promise((resolve, reject) => {
-    rl.question('How many shots of espresso to add? ', (answer) => {
+  return new Promise((resolve) => {
+    rl.question('How many shots of espresso to add? ', answer => {
       resolve(answer);
     });
   });
 };
 const peppermintQ = () => {
-  return new Promise((resolve, reject) => {
-    rl.question('How many shots of peppermint to add? ', (answer) => {
+  return new Promise((resolve) => {
+    rl.question('How many shots of peppermint to add? ', answer => {
       resolve(answer);
     });
   });
@@ -111,6 +95,19 @@ class PeppermintMocha extends Mocha {
   }
 }
 
+// display menu and return selected menu item
+const showMenu = async () => {
+  console.log(
+    'Select Mocha from menu: \n',
+    '1: Create White Chocolate Mocha \n',
+    '2: Create Dark Chocolate Mocha \n',
+    '3: Create Peppermint Mocha\n',
+    '0: Exit\n'
+  );
+  const qMenu = await menuQ();
+  return qMenu;
+};
+
 const main = () => {
   let menuChoice = 0;
   const buildMocha = async () => {
@@ -147,15 +144,20 @@ const main = () => {
 };
 main();
 
-// display menu and return selected menu item
-const showMenu = async () => {
-  console.log(
-    'Select Mocha from menu: \n',
-    '1: Create White Chocolate Mocha \n',
-    '2: Create Dark Chocolate Mocha \n',
-    '3: Create Peppermint Mocha\n',
-    '0: Exit\n'
-  );
-  const qMenu = await menuQ();
-  return qMenu;
+
+// User questions
+const userOptions = async mochaObject => {
+  let milkPicked = await milkQ();
+  let milkChoice = parseInt(milkPicked);
+  var espPicked = await espressoQ();
+  let espChoice = parseInt(espPicked);
+  // If peppermint mocha
+  if (mochaObject instanceof PeppermintMocha) {
+    let pepPicked = await peppermintQ();
+    let pepChoice = parseInt(pepPicked);
+    mochaObject.peppermintSyrup = pepChoice;
+  }
+  mochaObject.milk = milkChoice;
+  mochaObject.shot = espChoice;
+  mochaObject.prepare();
 };
