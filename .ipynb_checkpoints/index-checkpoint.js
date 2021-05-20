@@ -108,43 +108,6 @@ const showMenu = async () => {
   return qMenu;
 };
 
-const main = () => {
-  let menuChoice = 0;
-  const buildMocha = async () => {
-    do {
-      const optionPicked = await showMenu();
-      menuChoice = parseInt(optionPicked);
-      switch (menuChoice) {
-        case 0: {
-          break;
-        }
-        case 1:
-          let whiteMochaVar = 0;
-          const whiteMocha = new WhiteChocolateMocha();
-          await userOptions(whiteMocha);
-          break;
-        case 2:
-          const darkMocha = new DarkChocolateMocha();
-          await userOptions(darkMocha);
-          break;
-        case 3:
-          const peppermintMocha = new PeppermintMocha();
-          await userOptions(peppermintMocha);
-          break;
-        default: {
-          console.log('Option invalid, please choose from menu.');
-          break;
-        }
-      }
-    } while (menuChoice != 0);
-    // end readline process
-    rl.close();
-  };
-  buildMocha();
-};
-main();
-
-
 // User questions
 const userOptions = async mochaObject => {
   let milkPicked = await milkQ();
@@ -161,3 +124,51 @@ const userOptions = async mochaObject => {
   mochaObject.shot = espChoice;
   mochaObject.prepare();
 };
+
+const main = () => {
+  let menuChoice = 0;
+  const buildMocha = async () => {
+    do {
+      const optionPicked = await showMenu();
+      menuChoice = parseInt(optionPicked);
+      switch (menuChoice) {
+        case 0: {
+          break;
+        }
+        case 1: {
+            //           let whiteMochaVar = 0;
+          const whiteMocha = new WhiteChocolateMocha();
+          await userOptions(whiteMocha);
+            break;
+        }
+
+          
+        case 2: {
+            const darkMocha = new DarkChocolateMocha();
+          await userOptions(darkMocha);
+            break;
+        }
+          
+          
+        case 3: {
+            const peppermintMocha = new PeppermintMocha();
+          await userOptions(peppermintMocha);
+            break;
+        }
+          
+          
+        default: {
+          console.log('Option invalid, please choose from menu.');
+          break;
+        }
+      }
+    } while (menuChoice != 0);
+    // end readline process
+    rl.close();
+  };
+  buildMocha();
+};
+main();
+
+
+
