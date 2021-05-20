@@ -10,14 +10,14 @@ const rl = readline_1.createInterface({
   // readable stream
   input: process.stdin,
   // writeable stream
-  output: process.stdout,
+  output: process.stdout
 });
 // Create questions for STDIN Input from console.
 const menuQ = () => {
   return new Promise((resolve, reject) => {
     try {
       // (readable, writeable from readline interface)
-      rl.question('Your choice: ', (answer) => {
+      rl.question('Your choice: ', answer => {
         resolve(answer);
       });
     } catch (error) {
@@ -28,14 +28,14 @@ const menuQ = () => {
 };
 let milkQ = () => {
   return new Promise((resolve, reject) => {
-    rl.question('How many cups of milk to add? ', (answer) => {
+    rl.question('How many cups of milk to add? ', answer => {
       resolve(answer);
     });
   });
 };
 
 // User questions
-const userOptions = async (mochaObject) => {
+const userOptions = async mochaObject => {
   let milkPicked = await milkQ();
   let milkChoice = parseInt(milkPicked);
   var espPicked = await espressoQ();
@@ -53,14 +53,14 @@ const userOptions = async (mochaObject) => {
 
 const espressoQ = () => {
   return new Promise((resolve, reject) => {
-    rl.question('How many shots of espresso to add? ', (answer) => {
+    rl.question('How many shots of espresso to add? ', answer => {
       resolve(answer);
     });
   });
 };
 const peppermintQ = () => {
   return new Promise((resolve, reject) => {
-    rl.question('How many shots of peppermint to add? ', (answer) => {
+    rl.question('How many shots of peppermint to add? ', answer => {
       resolve(answer);
     });
   });
