@@ -27,23 +27,22 @@ const menuQ = () => {
   });
 };
 let milkQ = () => {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     rl.question('How many cups of milk to add? ', answer => {
       resolve(answer);
     });
   });
 };
 
-
 const espressoQ = () => {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     rl.question('How many shots of espresso to add? ', answer => {
       resolve(answer);
     });
   });
 };
 const peppermintQ = () => {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     rl.question('How many shots of peppermint to add? ', answer => {
       resolve(answer);
     });
@@ -136,27 +135,24 @@ const main = () => {
           break;
         }
         case 1: {
-            //           let whiteMochaVar = 0;
+          //           let whiteMochaVar = 0;
           const whiteMocha = new WhiteChocolateMocha();
           await userOptions(whiteMocha);
-            break;
+          break;
         }
 
-          
         case 2: {
-            const darkMocha = new DarkChocolateMocha();
+          const darkMocha = new DarkChocolateMocha();
           await userOptions(darkMocha);
-            break;
+          break;
         }
-          
-          
+
         case 3: {
-            const peppermintMocha = new PeppermintMocha();
+          const peppermintMocha = new PeppermintMocha();
           await userOptions(peppermintMocha);
-            break;
+          break;
         }
-          
-          
+
         default: {
           console.log('Option invalid, please choose from menu.');
           break;
@@ -169,6 +165,3 @@ const main = () => {
   buildMocha();
 };
 main();
-
-
-
